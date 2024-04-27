@@ -6,6 +6,10 @@ if (Array.isArray(obj.Variables.data.forum_threadlist)) {
   obj.Variables.data.tpp = newlist.length;
 }
 
+if (obj.Variables.notice) {
+  obj.Variables.notice.newprompt = "0";
+}
+
 $done({
 	body: JSON.stringify(obj)
 });

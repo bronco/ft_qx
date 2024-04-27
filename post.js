@@ -9,6 +9,10 @@ if (obj.Variables.data.threaddetail) {
 	obj.Variables.data.threaddetail.appdetailadv = [];
 }
 
+if (obj.Variables.notice) {
+    obj.Variables.notice.newprompt = "0";
+}
+
 $done({
 	body: JSON.stringify(obj)
 });

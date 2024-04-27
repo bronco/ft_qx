@@ -5,6 +5,10 @@ if (Array.isArray(obj.Variables.data.activities)) {
   obj.Variables.data.activities = newlist;
 }
 
+if (obj.Variables.notice) {
+  obj.Variables.notice.newprompt = "0";
+}
+
 $done({
 	body: JSON.stringify(obj)
 });
