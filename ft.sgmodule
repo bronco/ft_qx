@@ -1,0 +1,31 @@
+#!name=飞科茶馆去广告
+#!desc=去除飞科茶馆APP中的广告和推广信息
+#!category=论坛
+
+
+[Rule]
+#Disable DOH
+IP-CIDR,103.41.167.237/32,REJECT,no-resolve
+IP-CIDR,118.89.204.198/32,REJECT,no-resolve
+
+
+[URL Rewrite]
+^https?:\/\/ptf\.flyertrip\.com\/common\/cf\/(.*)\.(png|jpg|jpeg|gif) reject-img
+^https?:\/\/(47\.100\.65\.202|www\.flyert\.com\.cn)\/api\/mobile\/index\.php.*module=advis reject-dict
+^https?:\/\/oss\.umetrip\.com\/fs\/((?:car|train|mall|store)|advert(?!\/icon\/))\/ reject-img
+
+
+[Script]
+http-response ^https?:\/\/(47\.100\.65\.202|www\.flyert\.com\.cn)\/api\/mobile\/index\.php.*module=threadpost script-path=https://raw.githubusercontent.com/bronco/ft_qx/main/post.js, requires-body=true, timeout=20, tag=post.js
+http-response ^https?:\/\/(47\.100\.65\.202|www\.flyert\.com\.cn)\/api\/mobile\/index\.php.*module=basicdata.*type=forumlist script-path=https://raw.githubusercontent.com/bronco/ft_qx/main/forumlist.js, requires-body=true, timeout=20, tag=forumlist.js
+http-response ^https?:\/\/(47\.100\.65\.202|www\.flyert\.com\.cn)\/api\/mobile\/index\.php.*module=basicdata.*type=forumdetail script-path=https://raw.githubusercontent.com/bronco/ft_qx/main/forumdetail.js, requires-body=true, timeout=20, tag=forumdetail.js
+http-response ^https?:\/\/(47\.100\.65\.202|www\.flyert\.com\.cn)\/api\/mobile\/index\.php.*module=basicdata.*type=app_onoff script-path=https://raw.githubusercontent.com/bronco/ft_qx/main/app_onoff.js, requires-body=true, timeout=20, tag=app_onoff.js
+http-response ^https?:\/\/(47\.100\.65\.202|www\.flyert\.com\.cn)\/api\/mobile\/index\.php.*module=forumdisplay script-path=https://raw.githubusercontent.com/bronco/ft_qx/main/forumdisplay.js, requires-body=true, timeout=20, tag=forumdisplay.js
+http-response ^https?:\/\/(47\.100\.65\.202|www\.flyert\.com\.cn)\/api\/mobile\/index\.php.*module=notifications script-path=https://raw.githubusercontent.com/bronco/ft_qx/main/notifications.js, requires-body=true, timeout=20, tag=notifications.js
+http-response ^https?:\/\/(47\.100\.65\.202|www\.flyert\.com\.cn)\/api\/mobile\/index\.php.*module=users script-path=https://raw.githubusercontent.com/bronco/ft_qx/main/users.js, requires-body=true, timeout=20, tag=users.js
+http-response ^https?:\/\/(47\.100\.65\.202|www\.flyert\.com\.cn)\/.*\.php script-path=https://raw.githubusercontent.com/bronco/ft_qx/main/notice_num.js, requires-body=true, timeout=20, tag=notice_num.js
+
+
+
+[MITM]
+hostname = %APPEND% *.umetrip.com,ptf.flyertrip.com,*.bldimg.com,47.100.65.202,www.flyert.com.cn,ptf.flyertrip.com
