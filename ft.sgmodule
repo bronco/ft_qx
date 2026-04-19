@@ -1,4 +1,4 @@
-#!name=飞科茶馆去广告
+#!name=飞客茶馆去广告
 #!desc=去除飞科茶馆APP中的广告和推广信息
 #!category=论坛
 
@@ -28,4 +28,4 @@ http-response ^https?:\/\/(47\.100\.65\.202|www\.flyert\.com\.cn)\/.*\.php scrip
 
 
 [MITM]
-hostname = %APPEND% *.umetrip.com,ptf.flyertrip.com,*.bldimg.com,47.100.65.202,www.flyert.com.cn,ptf.flyertrip.com
+hostname = %APPEND% oss.umetrip.com,ptf.flyertrip.com,*.bldimg.com,47.100.65.202,www.flyert.com.cn,ptf.flyertrip.com
